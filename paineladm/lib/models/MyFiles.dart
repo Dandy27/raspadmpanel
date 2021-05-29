@@ -1,5 +1,7 @@
-import 'package:admin/constants.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
+
+import '../constants.dart';
 
 class CloudStorageInfo {
   final String svgSrc, title, totalStorage;
@@ -7,15 +9,15 @@ class CloudStorageInfo {
   final Color color;
 
   CloudStorageInfo(
-      {this.svgSrc,
-      this.title,
-      this.totalStorage,
-      this.numOfFiels,
-      this.percentage,
-      this.color});
+      {required this.svgSrc,
+      required this.title,
+      required this.totalStorage,
+      required this.numOfFiels,
+      required this.percentage,
+      required this.color});
 }
 
-List demoMyFiels = [
+List<CloudStorageInfo> demoMyFiels = [
   CloudStorageInfo(
     title: "Documents",
     numOfFiels: 1328,

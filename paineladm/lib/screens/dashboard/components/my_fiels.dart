@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:paineladm/models/MyFiles.dart';
 
 import '../../../constants.dart';
+import 'file_info_card.dart';
 
 class MyFiels extends StatelessWidget {
   const MyFiels({
@@ -33,16 +37,14 @@ class MyFiels extends StatelessWidget {
         ),
         GridView.builder(
           shrinkWrap: true,
-          itemCount: 4,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: defaultPadding),
-            itemBuilder: (context, index) => Container(
-              decoration: const BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(10),),
-              ),
-            ))
+          itemCount: demoMyFiels.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: defaultPadding,
+              childAspectRatio: 1.4),
+          itemBuilder: (context, index) =>
+              FileInfoCard(info: demoMyFiels[index]),
+        )
       ],
     );
   }
