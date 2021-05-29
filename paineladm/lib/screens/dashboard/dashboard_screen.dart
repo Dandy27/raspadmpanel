@@ -1,9 +1,12 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:paineladm/constants.dart';
 
 import 'components/chart.dart';
 import 'components/header.dart';
+import 'components/storage_details.dart';
+import 'components/storage_info_card.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -21,39 +24,20 @@ class DashboardScreen extends StatelessWidget {
                 height: defaultPadding,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                       flex: 5,
                       child: Container(
                         height: 500,
-                        color: Colors.white,
+                        color: secondaryColor,
                       )),
                   const SizedBox(
                     width: defaultPadding,
                   ),
-                  Expanded(
+                  const Expanded(
                       flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        height: 500,
-                        decoration: const BoxDecoration(
-                            color: secondaryColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: Column(
-                          // ignore: prefer_const_literals_to_create_immutables
-                          children: [
-                            const Text(
-                              'Storage Details',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Chart(),
-                          ],
-                        ),
-                      ))
+                      child:  StorageDetails())
                 ],
               )
             ],
