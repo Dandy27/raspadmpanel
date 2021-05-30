@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:paineladm/screens/main/responsive.dart';
 
-import 'package:paineladm/constants.dart';
-import 'package:paineladm/models/RecentFile.dart';
-
+import '../../constants.dart';
 import 'components/header.dart';
 import 'components/my_fiels.dart';
 import 'components/recent_files.dart';
@@ -14,37 +12,40 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(defaultPadding),
-          child: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              // ignore: prefer_const_constructors
-              const Header(),
-              const SizedBox(height: defaultPadding),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Expanded(
-                      flex: 5,
-                      child: Column(children: [
-                        const MyFiels(),
+        padding: EdgeInsets.all(defaultPadding),
+        child: Column(
+          children: [
+            Header(),
+            SizedBox(height: defaultPadding),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      const MyFiels(),
+                      const SizedBox(height: defaultPadding),
+                      RecentFiles(),
+                      if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
-                        RecentFiles(),
-                      ])),
-                  const SizedBox(
-                    width: defaultPadding,
+                      if (Responsive.isMobile(context)) const StorageDetails(),
+                    ],
                   ),
-                  const Expanded(flex: 2, child: StorageDetails())
-                ],
-              )
-            ],
-          ),
+                ),
+                if (!Responsive.isMobile(context))
+                  const SizedBox(width: defaultPadding),
+                // On Mobile means if the screen is less than 850 we dont want to show it
+                if (!Responsive.isMobile(context))
+                  const Expanded(
+                    flex: 2,
+                    child: StorageDetails(),
+                  ),
+              ],
+            )
+          ],
         ),
       ),
     );
   }
-
- 
 }
